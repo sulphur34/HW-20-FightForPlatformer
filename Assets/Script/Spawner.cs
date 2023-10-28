@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Coin _spawnObject;
+    [SerializeField] private GameObject _spawnObject;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private int _spawnedCyclesValue;
-    [SerializeField] private Vector3[] _spawnCoordinates;
-
+    [SerializeField] private Transform[] _spawnCoordinates;
 
     private WaitForSeconds _waitForSeconds;
     private System.Random _random;
@@ -24,7 +23,7 @@ public class CoinSpawner : MonoBehaviour
         for (int i = 0; i < _spawnedCyclesValue; i++)
         {
             Instantiate(_spawnObject,
-                _spawnCoordinates[_random.Next(_spawnCoordinates.Length)],
+                _spawnCoordinates[_random.Next(_spawnCoordinates.Length)].position,
                 Quaternion.identity);
             yield return _waitForSeconds;
         }

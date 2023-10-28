@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent (typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
@@ -9,23 +10,36 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int _maxHealth;
     
+    private float _minHealth;
     private Animator _animator;
-    private int _currentHealth;
+    private float _currentHealth;
     private int _hurtIndex;
     private int _isDeadIndex;
     private float _timeToDestruction = 2;
 
+    public float CurrentHealth => _currentHealth;
+
+    public UnityAction HealthChanged;
+
     private void Awake()
     {
+        _minHealth = 0;
         _animator = GetComponent<Animator>(); 
         _currentHealth = _maxHealth;
         _hurtIndex = Animator.StringToHash(Hurt);
         _isDeadIndex = Animator.StringToHash(IsDead);
     }
 
+    public void Restore(float restoreValue)
+    {
+        _currentHealth += restoreValue;
+        _currentHealth = Mathf.Clamp(_currentHealth, _minHealth, _maxHealth);
+        HealthChanged?.Invoke();
+    }
+
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
+        Restore(-damage);
         _animator.SetTrigger(_hurtIndex);
 
         if (_currentHealth <= 0) 
