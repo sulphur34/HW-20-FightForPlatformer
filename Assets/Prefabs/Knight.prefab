@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 3213671383577687374}
   - component: {fileID: 3213671383577687372}
   - component: {fileID: 3213671383577687361}
-  - component: {fileID: 3213671383577687373}
   - component: {fileID: 3213671383577687375}
   - component: {fileID: 3213671383577687370}
-  - component: {fileID: 3213671383577687360}
   - component: {fileID: 896221095732087565}
+  - component: {fileID: 6988385989849300659}
+  - component: {fileID: 7026600052657536639}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -174,12 +174,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3053b9d3dad0541b29e00230aabcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveHorizontalRightEvent:
+  _walkRightEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3213671383577687375}
-        m_TargetAssemblyTypeName: MoveHorizontal, Assembly-CSharp
-        m_MethodName: MoveEvent
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: MoveHorizontal
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -189,12 +189,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _moveHorizontalLeftEvent:
+  _walkLeftEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3213671383577687375}
-        m_TargetAssemblyTypeName: MoveHorizontal, Assembly-CSharp
-        m_MethodName: MoveEvent
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: MoveHorizontal
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -204,11 +204,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _runRightEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3213671383577687375}
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: MoveHorizontal
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _runLeftEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3213671383577687375}
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: MoveHorizontal
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _flipEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3213671383577687370}
-        m_TargetAssemblyTypeName: Flip, Assembly-CSharp
+        m_TargetAssemblyTypeName: Flipper, Assembly-CSharp
         m_MethodName: FlipEvent
         m_Mode: 1
         m_Arguments:
@@ -222,9 +252,9 @@ MonoBehaviour:
   _moveVerticalEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3213671383577687373}
-        m_TargetAssemblyTypeName: MoveVertical, Assembly-CSharp
-        m_MethodName: MoveEvent
+      - m_Target: {fileID: 3213671383577687375}
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: MoveHorizontal
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -237,9 +267,9 @@ MonoBehaviour:
   _attackEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3213671383577687360}
-        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
-        m_MethodName: AttackEvent
+      - m_Target: {fileID: 6988385989849300659}
+        m_TargetAssemblyTypeName: AnimatorHandler, Assembly-CSharp
+        m_MethodName: OnAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -249,18 +279,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3213671383577687373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213671383577687382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e41303f6d712b049bd65d6a47519fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3213671383577687375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,20 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a84059e196a5bf4ea4d7b1343c17fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3213671383577687360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213671383577687382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0541e1bf578ca8a49ad7251bc14dc9e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damageValue: 1
-  _attackPoint: {fileID: 3213671383641329781}
 --- !u!114 &896221095732087565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +316,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 10
+  _healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _damageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  _death:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6988385989849300659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213671383577687382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd905da2a373c7b4d8f8cc90089ca9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7026600052657536639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213671383577687382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0541e1bf578ca8a49ad7251bc14dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageValue: 0
+  _attackPoint: {fileID: 0}
+  _attackEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7572491985978972232
 PrefabInstance:
   m_ObjectHideFlags: 0

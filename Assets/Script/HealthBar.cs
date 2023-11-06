@@ -8,11 +8,10 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        _health.HealthChanged += OnHealthChanged;
         OnHealthChanged();
     }
 
-    private void OnHealthChanged()
+    public void OnHealthChanged()
     {
        _healthValue.text = _health.CurrentHealth.ToString();
     }

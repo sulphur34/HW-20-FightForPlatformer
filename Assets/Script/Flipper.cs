@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Flip : MonoBehaviour
+public class Flipper : MonoBehaviour
 {
     private Rigidbody2D _rigidBody;
     private void Awake()

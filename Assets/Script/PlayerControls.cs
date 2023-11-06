@@ -1,16 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
-[RequireComponent (typeof(Health))]
 public class PlayerControls : MonoBehaviour
 {
-    private const string HorizontalSpeed = "HorizontalSpeed";
-    private const string VerticalSpeed = "VerticalSpeed";
-    private const string Attack = "Attack";
-    private const string IsDead = "isDead";
-
     [SerializeField] private UnityEvent _walkRightEvent;
     [SerializeField] private UnityEvent _walkLeftEvent;
     [SerializeField] private UnityEvent _runRightEvent;
@@ -19,38 +12,22 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private UnityEvent _moveVerticalEvent;
     [SerializeField] private UnityEvent _attackEvent;
 
-    private int _horizontalSpeedIndex;
-    private int _verticalSpeedIndex;
-    private int _attackIndex;
-    private int _isDeadIndex;
-    private Animator _animator;
-    private Rigidbody2D _rigidBody;
-    private float attackRate = 2f;
-    private float _nextAttackTime = 0f;
+    private Coroutine _coroutine;
 
-    void Start()
+    private void Start()
     {
-        _horizontalSpeedIndex = Animator.StringToHash(HorizontalSpeed);
-        _verticalSpeedIndex = Animator.StringToHash(VerticalSpeed);
-        _attackIndex = Animator.StringToHash(Attack);
-        _animator = GetComponent<Animator>();
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _isDeadIndex = Animator.StringToHash(IsDead);
+        _coroutine = StartCoroutine(BeginControlsListener());
     }
 
-    void Update()
+    private IEnumerator BeginControlsListener()
     {
-        _animator.SetFloat(_horizontalSpeedIndex,
-            Mathf.Abs(_rigidBody.velocity.x));
-        _animator.SetFloat(_verticalSpeedIndex, 
-            Mathf.Abs(_rigidBody.velocity.y));
+        bool IsContinue = true;
 
-        if (_animator.GetBool(_isDeadIndex) == false)
+        while (IsContinue)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (Mathf.Abs(_rigidBody.velocity.y) < 0.1)
-                    _moveVerticalEvent.Invoke();
+                _moveVerticalEvent.Invoke();
             }
 
             if (Input.GetKey(KeyCode.D))
@@ -60,7 +37,7 @@ public class PlayerControls : MonoBehaviour
                 if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift))
                     _runRightEvent.Invoke();
                 else
-                    _walkRightEvent.Invoke();                
+                    _walkRightEvent.Invoke();
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -72,16 +49,16 @@ public class PlayerControls : MonoBehaviour
                 else
                     _walkLeftEvent.Invoke();
             }
-
-            if (Time.time >= _nextAttackTime)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    _animator.SetTrigger(_attackIndex);
+            
+            if (Input.GetKeyDown(KeyCode.Space))
                     _attackEvent.Invoke();
-                    _nextAttackTime = Time.time + 1f / attackRate;
-                }
-            }
+
+            yield return null;
         }
+    }
+
+    private void OnDeath()
+    {
+        StopCoroutine(_coroutine);
     }
 }

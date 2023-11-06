@@ -18,6 +18,11 @@ GameObject:
   - component: {fileID: 943214229714816176}
   - component: {fileID: 943214229714816177}
   - component: {fileID: 943214229714816181}
+  - component: {fileID: 188993614524746865}
+  - component: {fileID: 7496982730076360264}
+  - component: {fileID: 5679062239105718146}
+  - component: {fileID: 867037063641936899}
+  - component: {fileID: 7784893847655029802}
   m_Layer: 0
   m_Name: SkeletonWarrior
   m_TagString: Untagged
@@ -173,8 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfe4cdbd05a11c439315a4a9eece35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightBorderWaypoint: {fileID: 0}
-  _leftBorderWaypoint: {fileID: 0}
 --- !u!114 &943214229714816183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +191,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
+  _healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _damageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  _death:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &943214229714816176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +236,91 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a84059e196a5bf4ea4d7b1343c17fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &188993614524746865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943214229714816143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e0a42f6f2532f4c9f192a35f0a4d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startState: {fileID: 867037063641936899}
+--- !u!114 &7496982730076360264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943214229714816143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d791fc8e07f1e1644b0a38bb2c201ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _nextState: {fileID: 5679062239105718146}
+  _attackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 943214229714816176}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5679062239105718146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943214229714816143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1025653f9bf0b7b48a82f8236f8ab133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _nextState: {fileID: 7496982730076360264}
+--- !u!114 &867037063641936899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943214229714816143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a6268475525334a91eb13497826d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _nextState: {fileID: 5679062239105718146}
+  _followDistance: 1.5
+  _rightBorderWaypoint: {fileID: 0}
+  _leftBorderWaypoint: {fileID: 0}
+--- !u!114 &7784893847655029802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943214229714816143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd905da2a373c7b4d8f8cc90089ca9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &943214229792573580
